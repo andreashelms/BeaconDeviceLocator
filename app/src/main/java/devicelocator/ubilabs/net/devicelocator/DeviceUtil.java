@@ -1,6 +1,7 @@
 package devicelocator.ubilabs.net.devicelocator;
 
 import android.bluetooth.BluetoothAdapter;
+import android.location.Location;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -10,34 +11,15 @@ import android.text.TextUtils;
 
 public class DeviceUtil {
 
-    //get device name from current device
-    public static String getDeviceName() {
-        String manufacturer = Build.MANUFACTURER;
-        String model = Build.MODEL;
-        if (model.startsWith(manufacturer)) {
-            return capitalize(model);
+    //get device mac address of bluetooth adapter
+    public static String getMacAddress(){
+        BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
+        String macAddress = myDevice.getAddress();
+        if(macAddress.equals("")){
+            return "UNKNOWN";
+        }else{
+            return macAddress;
         }
-        return capitalize(manufacturer) + " " + model;
-    }
-
-    private static String capitalize(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return str;
-        }
-        char[] arr = str.toCharArray();
-        boolean capitalizeNext = true;
-        String phrase = "";
-        for (char c : arr) {
-            if (capitalizeNext && Character.isLetter(c)) {
-                phrase += Character.toUpperCase(c);
-                capitalizeNext = false;
-                continue;
-            } else if (Character.isWhitespace(c)) {
-                capitalizeNext = true;
-            }
-            phrase += c;
-        }
-        return phrase;
     }
 
     //get bluetooth name of current device

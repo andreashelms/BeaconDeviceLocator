@@ -3,6 +3,10 @@ package devicelocator.ubilabs.net.devicelocator;
 import android.util.Log;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.Proxy;
+import java.net.URL;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -28,19 +32,21 @@ public class HttpUtil {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
+        Log.d(TAG,"URL sent: " + url);
+        Response response = mHttpClient.newCall(request).execute();
+        response.close();
 
-        mHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(final Call call, IOException e) {
-                e.printStackTrace();
-                if (BuildConfig.DEBUG) Log.d(TAG, "Fail:" + e.toString());
-            }
+    }
 
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                if (BuildConfig.DEBUG) Log.d(TAG, "Success calling " + url);
-                response.close();
-            }
-        });
+    //expands shortened url and returns it
+    public static String expandUrl(String address) throws IOException {
+        URL url = new URL(address);
+
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection(Proxy.NO_PROXY);
+        connection.setInstanceFollowRedirects(false);
+        connection.connect();
+        String expandedURL = connection.getHeaderField("Location");
+        connection.getInputStream().close();
+        return expandedURL;
     }
 }

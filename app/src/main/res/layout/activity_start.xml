@@ -13,6 +13,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Device Locator is running in background. Please close this App."/>
+        android:text="Device Locator is running in background. You can now close this App."/>
 
 </RelativeLayout>

@@ -14,9 +14,11 @@ import org.altbeacon.beacon.startup.BootstrapNotifier;
 import org.altbeacon.beacon.startup.RegionBootstrap;
 import org.altbeacon.beacon.utils.UrlBeaconUrlCompressor;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * Created by andreashelms on 27/10/16.
@@ -27,28 +29,35 @@ public class DeviceLocatorApp extends Application implements BootstrapNotifier, 
     private RegionBootstrap regionBootstrap;
     private BeaconManager mBeaconManager;
     private BackgroundPowerSaver mBackgroundPowerSaver;
-    private HashMap<String, Double> mUrlDistanceMap;
+    private HashMap<String, ArrayList<Double>> mUrlDistanceMap;
     private HttpUtil mHttpUtil;
+    private int hashCode = 0;
+    private Region mRegion;
+    private int mScanCount = 0;
 
-    private long scanInterval = 30000l;
+    private long scanPeriod = 5000l;
+    private long scanInterval = 1000l;
+    private int sendInterval = 100;
 
     @Override
     public void onCreate() {
         super.onCreate();
         if (BuildConfig.DEBUG) Log.d(TAG, "App started up");
+        mBackgroundPowerSaver = new BackgroundPowerSaver(this);
 
         mBeaconManager = BeaconManager.getInstanceForApplication(this);
         //Eddystone-URL-Parser
         mBeaconManager.getBeaconParsers().add(new BeaconParser().
                 setBeaconLayout("s:0-1=feaa,m:2-2=10,p:3-3:-41,i:4-20v"));
+        mBeaconManager.setBackgroundScanPeriod(scanPeriod);
         mBeaconManager.setBackgroundBetweenScanPeriod(scanInterval);
+        mBeaconManager.setForegroundScanPeriod(scanPeriod);
+        mBeaconManager.setForegroundBetweenScanPeriod(scanInterval);
+
+        mRegion = new Region("ubilabsRegion", null, null, null);
+        regionBootstrap = new RegionBootstrap(this, mRegion);
+
         mBeaconManager.bind(this);
-
-        mBackgroundPowerSaver = new BackgroundPowerSaver(this);
-
-        //Specify Identifiers which wake up the App
-        Region region = new Region("ubilabsRegion", null, null, null);
-        regionBootstrap = new RegionBootstrap(this, region);
 
         mUrlDistanceMap = new HashMap<>();
 
@@ -73,50 +82,122 @@ public class DeviceLocatorApp extends Application implements BootstrapNotifier, 
 
     @Override
     public void didExitRegion(Region region) {
-        //do nothing
+
     }
 
     @Override
     public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
-        int hashCode = mUrlDistanceMap.hashCode();
-        //set all distances in Map to zero
-        setDistanceToZero(mUrlDistanceMap);
-        for (final Beacon beacon: beacons) {
-            if (beacon.getServiceUuid() == 0xfeaa && beacon.getBeaconTypeCode() == 0x10) {
-                final String url = UrlBeaconUrlCompressor.uncompress(beacon.getId1().toByteArray());
-                if (BuildConfig.DEBUG) Log.d(TAG, "I see a beacon transmitting a url: " + url +
-                        " approximately " + beacon.getDistance() + " meters away.");
-                double distance =
-                mUrlDistanceMap.put(url,beacon.getDistance());
+        if(beacons.hashCode() != hashCode) {
+            hashCode = beacons.hashCode();
+            for (final Beacon beacon : beacons) {
+                if (beacons.size() > 0) {
+                    Log.i(TAG, "The first beacon (" + beacon.getBluetoothAddress() + ") I see is about "+beacon.getDistance()+" meters away.");
+                    beacons.iterator().next().getRssi();
+                }
+                if (beacon.getServiceUuid() == 0xfeaa && beacon.getBeaconTypeCode() == 0x10) {
+                    final String url = UrlBeaconUrlCompressor.uncompress(beacon.getId1().toByteArray());
+                    /*if (BuildConfig.DEBUG) Log.d(TAG, "url: " + url +
+                            " rssi: " + beacon.getRssi() + " txpower." + beacon.getTxPower());*/
+                    if (!mUrlDistanceMap.containsKey(url)) {
+                        mUrlDistanceMap.put(url, new ArrayList<Double>());
+                    }
+                    int txPower = -62;
+                    ArrayList<Double> distanceList = mUrlDistanceMap.get(url);
+
+                    //Alcatel
+                    /*if(url.equals("http://bdl.bplaced.net/?l=d")){
+                        txPower = -73;
+                    }else if(url.equals("http://bdl.bplaced.net/?l=m")){
+                        txPower = -60;
+                    }else if(url.equals("http://bdl.bplaced.net/?l=p")){
+                        txPower = -65;
+                    }else if(url.equals("http://bdl.bplaced.net/?l=w")){
+                        txPower = -64;
+                    }*/
+                    if(url.equals("http://bdl.bplaced.net/?l=d")){
+                        txPower = -73;
+                    }else if(url.equals("http://bdl.bplaced.net/?l=m")){
+                        txPower = -65;
+                    }else if(url.equals("http://bdl.bplaced.net/?l=p")){
+                        txPower = -65;
+                    }else if(url.equals("http://bdl.bplaced.net/?l=w")){
+                        txPower = -78;
+                    }
+                    //
+                    double distance = calculateAccuracy(beacon.getTxPower(), beacon.getRssi());
+                    //double distance = beacon.getDistance();
+                    distanceList.add(distance);
+                    Log.d(TAG,"distancelistsize (" + url +"): " + distanceList.size());
+                    mScanCount++;
+                    if (BuildConfig.DEBUG) Log.d(TAG, "I see a beacon transmitting a url: " + url +
+                            " approximately " + calculateAccuracy(beacon.getTxPower(), beacon.getRssi()) + " meters away. (count: " + mScanCount + ")");
+
+                    /*if(urlDistanceCountMap.containsKey(url)) {
+                        HashMap<Double, Integer> distanceCountList = urlDistanceCountMap.get(url);
+                        int distanceCount = 1;
+                        if (distanceCountList.containsKey(distance)) {
+                            distanceCount = distanceCountList.get(distance);
+                            distanceCount++;
+                            if(distanceCount > 1){
+                                distanceList.add(distance);
+                                mScanCount++;
+                                distanceCount = 0;
+                                Log.d(TAG,"distance for " + url + " added: " + distance);
+                            }
+                        }
+                        distanceCountList.put(distance, distanceCount);
+                    }else {
+                        HashMap<Double, Integer> distanceCountMap = new HashMap<>();
+                        distanceCountMap.put(distance, 1);
+                        urlDistanceCountMap.put(url, distanceCountMap);
+                    }*/
+                }
             }
-        }
-        //only update server data when HashMap has changed
-        if(mUrlDistanceMap.hashCode() != hashCode) {
-            for (Map.Entry<String, Double> urlDistanceEntry : mUrlDistanceMap.entrySet()) {
-                try {
-                    mHttpUtil.get(
-                            urlDistanceEntry.getKey() +
-                                    "&p=" + DeviceUtil.getPhoneName() +
-                                    "&n=" + DeviceUtil.getDeviceName() +
-                                    "&d=" + urlDistanceEntry.getValue()
-                    );
-                } catch (IOException e) {
-                    e.printStackTrace();
+            if(mScanCount >= sendInterval) {
+                mScanCount = 0;
+                for (Map.Entry<String, ArrayList<Double>> urlDistanceEntry : mUrlDistanceMap.entrySet()) {
+                    double distance = 0;
+                    int count = 0;
+                    for (double urlDistance : urlDistanceEntry.getValue()) {
+                        count++;
+                        distance = distance + urlDistance;
+                    }
+                    Log.d(TAG, urlDistanceEntry.getKey() + ":" + count);
+                    distance = distance / urlDistanceEntry.getValue().size();
+                    String url = null;
+                    try {
+                        url = HttpUtil.expandUrl(urlDistanceEntry.getKey());
+                        if(url == null) {
+                            url = urlDistanceEntry.getKey();
+                        }
+                        mHttpUtil.get(
+                                url +
+                                        "&name=" + DeviceUtil.getPhoneName() +
+                                        "&mac=" + DeviceUtil.getMacAddress() +
+                                        "&distance=" + distance
+                        );
+                        mUrlDistanceMap.put(urlDistanceEntry.getKey(), new ArrayList<Double>());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
-
     }
 
     @Override
     public void onBeaconServiceConnect() {
-        mBeaconManager.setRangeNotifier(this);
+        mBeaconManager.addRangeNotifier(this);
+        try {
+            mBeaconManager.startRangingBeaconsInRegion(mRegion);
+        }
+        catch (RemoteException e) {
+            if (BuildConfig.DEBUG) Log.d(TAG, "Can't start ranging");
+        }
     }
 
-    private void setDistanceToZero(HashMap<String,Double> urlDistanceMap){
-        for(Map.Entry<String, Double> urlDistanceEntry : urlDistanceMap.entrySet()) {
-            urlDistanceMap.put(urlDistanceEntry.getKey(),0.0);
-        }
+    protected static double calculateAccuracy(double txPower, double rssi) {
+        return Math.pow(10d, (txPower - rssi) / (10 * 2));
     }
 }
 
