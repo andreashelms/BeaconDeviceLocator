@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5dd4c6d967f3a774bc9fcb04ffd0a63a64c9e9eb">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_75bf3f334845f0fc82473f9909b1ddc546be32d9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.0_bdd99c931e1c8320c2456051dba10c39d8a42226/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.0.0_e192cf32757c3f64f96c915da9ab964e1778fd12/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.4.1_70a62e160a1009ef556554b71dd20ce25e23af0f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.0_1fd160b50f228181ad934622145a3d973434465c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_634f7e995f41517f87bac16b559f12f642bfb950/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.0_5760bf7a4f7e873025aae811715659e17cf9b034/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.0_136c04329675244446dea9628ee6fc77d113a262/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.0.0_496d50597190da80a714953e285a76fa9864c105/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.0_7daeea72414b18adda92ca249933e8aae41a452c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_d9b996b6454496f0a423214e8254af423c04e10c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.9.0_6cd97ca6d5ae858cceaeec8c686eb9c715a1a8c4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/org.altbeacon/android-beacon-library/2.9.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0b271af1568b43a528bba26d19c5874bb91c34cd">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/org.altbeacon-android-beacon-library-2.9.1_3f97744e45b9a082f758323e031044cda5eb3d95/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.0_b61cfeb1dbe01c8b0788e57686c7320fe1fb743b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_2774797310fe9f7cf20a9e2bf333c037203b9eb3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_ccb2bc31ad90ff8e45b9d68af296c740504db14c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.0_aea0a1602d581f65747a0d3f4d71c9a0e530a602/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f04776b5ff4253c6b1867ef21d0ff196894366fe">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_f8f62d6e656a7fb8d9e7887bfe0bf15300723ca5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_45d3f54dcb82adb6a3e428e7a9ba36ca8d058fad/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/Users/andreashelms/Documents/DeviceLocator/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.0_9ac33d190b0356fe016397cef9f091607f79d70e/classes.dex" />
+    </item>
+
+</items>

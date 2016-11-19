@@ -96,61 +96,19 @@ public class DeviceLocatorApp extends Application implements BootstrapNotifier, 
                 }
                 if (beacon.getServiceUuid() == 0xfeaa && beacon.getBeaconTypeCode() == 0x10) {
                     final String url = UrlBeaconUrlCompressor.uncompress(beacon.getId1().toByteArray());
-                    /*if (BuildConfig.DEBUG) Log.d(TAG, "url: " + url +
-                            " rssi: " + beacon.getRssi() + " txpower." + beacon.getTxPower());*/
+
                     if (!mUrlDistanceMap.containsKey(url)) {
                         mUrlDistanceMap.put(url, new ArrayList<Double>());
                     }
-                    int txPower = -62;
+
                     ArrayList<Double> distanceList = mUrlDistanceMap.get(url);
 
-                    //Alcatel
-                    /*if(url.equals("http://bdl.bplaced.net/?l=d")){
-                        txPower = -73;
-                    }else if(url.equals("http://bdl.bplaced.net/?l=m")){
-                        txPower = -60;
-                    }else if(url.equals("http://bdl.bplaced.net/?l=p")){
-                        txPower = -65;
-                    }else if(url.equals("http://bdl.bplaced.net/?l=w")){
-                        txPower = -64;
-                    }*/
-                    if(url.equals("http://bdl.bplaced.net/?l=d")){
-                        txPower = -73;
-                    }else if(url.equals("http://bdl.bplaced.net/?l=m")){
-                        txPower = -65;
-                    }else if(url.equals("http://bdl.bplaced.net/?l=p")){
-                        txPower = -65;
-                    }else if(url.equals("http://bdl.bplaced.net/?l=w")){
-                        txPower = -78;
-                    }
-                    //
                     double distance = calculateAccuracy(beacon.getTxPower(), beacon.getRssi());
-                    //double distance = beacon.getDistance();
                     distanceList.add(distance);
-                    Log.d(TAG,"distancelistsize (" + url +"): " + distanceList.size());
                     mScanCount++;
+
                     if (BuildConfig.DEBUG) Log.d(TAG, "I see a beacon transmitting a url: " + url +
                             " approximately " + calculateAccuracy(beacon.getTxPower(), beacon.getRssi()) + " meters away. (count: " + mScanCount + ")");
-
-                    /*if(urlDistanceCountMap.containsKey(url)) {
-                        HashMap<Double, Integer> distanceCountList = urlDistanceCountMap.get(url);
-                        int distanceCount = 1;
-                        if (distanceCountList.containsKey(distance)) {
-                            distanceCount = distanceCountList.get(distance);
-                            distanceCount++;
-                            if(distanceCount > 1){
-                                distanceList.add(distance);
-                                mScanCount++;
-                                distanceCount = 0;
-                                Log.d(TAG,"distance for " + url + " added: " + distance);
-                            }
-                        }
-                        distanceCountList.put(distance, distanceCount);
-                    }else {
-                        HashMap<Double, Integer> distanceCountMap = new HashMap<>();
-                        distanceCountMap.put(distance, 1);
-                        urlDistanceCountMap.put(url, distanceCountMap);
-                    }*/
                 }
             }
             if(mScanCount >= sendInterval) {

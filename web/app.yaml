@@ -1,0 +1,14 @@
+runtime: php55
+api_version: 1
+
+handlers:
+- url: /.*
+  script: index.php
+
+env_variables:
+  # Replace project, instance, database, user and password with the values obtained
+  # when configuring your Cloud SQL instance.
+  MYSQL_DSN: ''
+  MYSQL_USER: ''
+  MYSQL_PASSWORD: ''
+  MYSQL_DATABASE: ''
