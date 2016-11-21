@@ -155,8 +155,8 @@ function showDevicesOnMap(){
           $measurements = uniteMeasurementsOfSameTime($distances);
       }
 
-      $intermediatePoints = array();
       foreach ($measurements as $measureKey => $beacons) {
+        $intermediatePoints = array();
         if(sizeof($beacons) >= 4){
           $measurementCount++;
           $beaconCombo = array($beacons);
@@ -584,7 +584,7 @@ function showFilters($measurementCount){
         for (var i = 0; i < number; i++) {
           markers[i].setMap(map);
         }
-        for (var i = 0; i < number * 8; i++) {
+        for (var i = 0; i < number * 4; i++) {
           intermediateMarkers[i].setMap(map);
         }
         calculateAverageLatLng(number);
