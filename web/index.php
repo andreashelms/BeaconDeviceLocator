@@ -132,7 +132,7 @@ function showDevicesOnMap(){
              $distance['distance'] * $device['offset']."m, ";
       }
     }
-    echo $device['timestamp'];
+    echo $distances[0]['timestamp'];
 
     echo '</pre>';
 
@@ -187,10 +187,12 @@ function showDevicesOnMap(){
           $coordinate->x = $coordinate->x / sizeof($beaconCombo);
           $coordinate->y = $coordinate->y / sizeof($beaconCombo);
 
-          foreach ($intermediatePoints as $index => $point) {
-            $intermediateCount++;
-            echo "<input id=inter_point_x".$intermediateCount." type=hidden value=".$point->x."></input>";
-            echo "<input id=inter_point_y".$intermediateCount." type=hidden value=".$point->y."></input>";
+          if($_POST["trilateration"] == "multiple"){
+            foreach ($intermediatePoints as $index => $point) {
+              $intermediateCount++;
+              echo "<input id=inter_point_x".$intermediateCount." type=hidden value=".$point->x."></input>";
+              echo "<input id=inter_point_y".$intermediateCount." type=hidden value=".$point->y."></input>";
+            }
           }
 
           echo "<input id=x".$measurementCount." type=hidden value=".$coordinate->x."></input>";
@@ -581,6 +583,9 @@ function showFilters($measurementCount){
       setMap = function(number, map) {
         for (var i = 0; i < number; i++) {
           markers[i].setMap(map);
+        }
+        for (var i = 0; i < number * 8; i++) {
+          intermediateMarkers[i].setMap(map);
         }
         calculateAverageLatLng(number);
       }
