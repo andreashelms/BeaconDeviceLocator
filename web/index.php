@@ -1,8 +1,16 @@
 <?php
 
-$GLOBALS['mysqli'] = new mysqli(null, getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'), null, getenv('MYSQL_DSN'));
+$GLOBALS['mysqli'] = new mysqli(
+  null,
+  getenv('MYSQL_USER'),
+  getenv('MYSQL_PASSWORD'),
+  getenv('MYSQL_DATABASE'),
+  null,
+  getenv('MYSQL_DSN'));
 if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    echo "Failed to connect to MySQL: (
+      " . $mysqli->connect_errno . "
+    ) " . $mysqli->connect_error;
 }
 
 // $_GET["name"] = phone name
@@ -504,8 +512,8 @@ function showFilters($measurementCount){
       var intermediateMarkers = [];
       var averageMarker;
       var map;
-      var defaultLat = parseFloat(document.getElementById("be_lat_default").value);
-      var defaultLng = parseFloat(document.getElementById("be_lng_default").value);
+      const defaultLat = parseFloat(document.getElementById("be_lat_default").value);
+      const defaultLng = parseFloat(document.getElementById("be_lng_default").value);
 
       updateSlider = function(slideAmount){
         var sliderValue = document.getElementById("slide").value;
@@ -552,14 +560,17 @@ function showFilters($measurementCount){
         const markerCount = parseInt(document.getElementById("count").value);
         addMarkers(markerCount, map);
 
-        addMarkersForIntermediatePoints(parseInt(document.getElementById("inter_point_count").value), map);
+        const intermediateMarkerCount = parseInt(document.getElementById("inter_point_count").value);
+        addMarkersForIntermediatePoints(intermediateMarkerCount, map);
 
         setMapOnAll(map);
 
         for(var i = 1; i <= document.getElementById("beacon_count").value; i++){
           var marker = new google.maps.Marker({
             icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-            position: {lat: parseFloat(document.getElementById("be_lat" + i).value), lng: parseFloat(document.getElementById("be_lng" + i).value)},
+            position: {
+              lat: parseFloat(document.getElementById("be_lat" + i).value),
+              lng: parseFloat(document.getElementById("be_lng" + i).value)},
             label:document.getElementById("be_name" + i).value,
             map: map
           });
@@ -592,9 +603,20 @@ function showFilters($measurementCount){
 
       addMarkers = function(number, map){
         for(var i = 1; i <= number; i++){
-          var lat = destinationPoint(new google.maps.LatLng(defaultLat, defaultLng), 60, document.getElementById("x" + i).value).lat();
-          var lng = destinationPoint(new google.maps.LatLng(defaultLat, defaultLng), 60, document.getElementById("x" + i).value).lng();
-          var latLng = destinationPoint(new google.maps.LatLng(lat, lng), 330, document.getElementById("y" + i).value);
+          var lat = destinationPoint(
+            new google.maps.LatLng(defaultLat, defaultLng),
+            60,
+            document.getElementById("x" + i).value
+          ).lat();
+          var lng = destinationPoint(
+            new google.maps.LatLng(defaultLat, defaultLng),
+            60, document.getElementById("x" + i).value
+          ).lng();
+          var latLng = destinationPoint(
+            new google.maps.LatLng(lat, lng),
+            330,
+            document.getElementById("y" + i).value
+          );
           var marker = new google.maps.Marker({
             position: {lat: latLng.lat(),
                        lng: latLng.lng()},
@@ -607,9 +629,20 @@ function showFilters($measurementCount){
 
       addMarkersForIntermediatePoints = function(number, map){
         for(var i = 1; i <= number; i++){
-          var lat = destinationPoint(new google.maps.LatLng(defaultLat, defaultLng), 60, document.getElementById("inter_point_x" + i).value).lat();
-          var lng = destinationPoint(new google.maps.LatLng(defaultLat, defaultLng), 60, document.getElementById("inter_point_x" + i).value).lng();
-          var latLng = destinationPoint(new google.maps.LatLng(lat, lng), 330, document.getElementById("inter_point_y" + i).value);
+          var lat = destinationPoint(
+            new google.maps.LatLng(defaultLat, defaultLng),
+            60, document.getElementById("inter_point_x" + i).value
+          ).lat();
+          var lng = destinationPoint(
+            new google.maps.LatLng(defaultLat, defaultLng),
+            60,
+            document.getElementById("inter_point_x" + i).value
+          ).lng();
+          var latLng = destinationPoint(
+            new google.maps.LatLng(lat, lng),
+            330,
+            document.getElementById("inter_point_y" + i).value
+          );
           var marker = new google.maps.Marker({
             icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
             position: {lat: latLng.lat(),
@@ -639,9 +672,21 @@ function showFilters($measurementCount){
             device = document.getElementById("device" + i).value;
           }
           if(goOn){
-            var averageLat = destinationPoint(new google.maps.LatLng(defaultLat, defaultLng), 60, x / number).lat();
-            var averageLng = destinationPoint(new google.maps.LatLng(defaultLat, defaultLng), 60, x / number).lng();
-            var averageLatLng = destinationPoint(new google.maps.LatLng(averageLat, averageLng), 330, y / number);
+            var averageLat = destinationPoint(
+              new google.maps.LatLng(defaultLat, defaultLng),
+              60,
+              x / number
+            ).lat();
+            var averageLng = destinationPoint(
+              new google.maps.LatLng(defaultLat, defaultLng),
+              60,
+              x / number
+            ).lng();
+            var averageLatLng = destinationPoint(
+              new google.maps.LatLng(averageLat, averageLng),
+              330,
+              y / number
+            );
             averageMarker = new google.maps.Marker({
               icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
               position: {lat: averageLatLng.lat(),

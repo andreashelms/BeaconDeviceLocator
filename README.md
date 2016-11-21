@@ -52,10 +52,10 @@ insert your beacon positions into location table of your SQL-instance.
 for example:
 
 INSERT INTO `location` (`name`, `tag`, `instance`, `lat`, `lng`, `x`, `y`) VALUES
-('location1', 'be2', '0x386bfce12b6f', 53.560973, 9.961542, 7.105, 5.322),
-('location2', 'be1', '0x386bfce12b6d', 53.560899, 9.961499, 0, 0),
-('location3', 'be3', '0x386bfce12b6c', 53.560944, 9.961612, 8, 0),
-('location4', 'be4', '0x386bfce12b6e', 53.560981, 9.9617, 15.93, 0);
+('location1', 'be2', 'instance1', lat1, lng1, x1, y1),
+('location2', 'be1', 'instance2', lat2, lng2, x2, y2),
+('location3', 'be3', 'instance3', lat3, lng3, x3, y3),
+('location4', 'be4', 'instance4', lat4, lng4, x4, y4);
 
 x and y are the positions of your beacons in metric coordinates. make sure your
 insert the right distances between beacons.
